@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-16"?>
+<QueryList>
+        <!--4900 - Certificate Services template security was updated. %1 v%2 (Schema V%3) %4 %5 Template Change Information: Old Template Content: %9 New Template Content: %7 Old Security Descriptor: %10 New Security Descriptor: %8 Additional Information: Domain Controller: %6 --> 
+        <!--4892 - A property of Certificate Services changed. Property: %1 Index: %2 Type: %3 Value: %4 --> 
+        <!--4874 - One or more certificate request attributes changed. Request ID: %1 Attributes: %2 --> 
+        <!--4873 - A certificate request extension changed. Request ID: %1 Name: %2 Type: %3 Flags: %4 Data: %5 --> 
+        <!--4888 - Certificate Services denied a certificate request. Request ID: %1 Requester: %2 Attributes: %3 Disposition: %4 SKI: %5 Subject: %6 --> 
+        <!--4887 - Certificate Services approved a certificate request and issued a certificate. Request ID: %1 Requester: %2 Attributes: %3 Disposition: %4 SKI: %5 Subject: %6 --> 
+        <!--4883 - Certificate Services retrieved an archived key. Request ID: %1 --> 
+        <!--4891 - A configuration entry changed in Certificate Services. Node: %1 Entry: %2 Value: %3 --> 
+        <!--4898 - Certificate Services loaded a template. %1 v%2 (Schema V%3) %4 %5 Template Information: Template Content: %7 Security Descriptor: %8 Additional Information: Domain Controller: %6 --> 
+        <!--4897 - Role separation enabled: %1 --> 
+        <!--4899 - A Certificate Services template was updated. %1 v%2 (Schema V%3) %4 %5 Template Change Information: Old Template Content: %8 New Template Content: %7 Additional Information: Domain Controller: %6 --> 
+        <Query Id="0" Path="Security">
+                <Select Path="Security">*[System[(EventID=4900 or EventID=4892 or EventID=4874 or EventID=4873 or EventID=4888 or EventID=4887 or EventID=4883 or EventID=4891 or EventID=4898 or EventID=4897 or EventID=4899)]]</Select>
+        </Query>
+</QueryList>
