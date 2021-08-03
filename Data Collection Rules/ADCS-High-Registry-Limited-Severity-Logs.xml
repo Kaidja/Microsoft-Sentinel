@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<QueryList>
+        <!-- 4657 - Alert only when the ObjectValueName equals "AuditFilter" -->
+        <!-- 4657 - Alert only when the ObjectValueName equals "Security" -->
+        <Query Id="0" Path="Security">
+                <Select Path="Security">*[System[(EventID=4657)]] and *[EventData[Data[@Name='ObjectValueName']='AuditFilter']]</Select>
+                <Select Path="Security">*[System[(EventID=4657)]] and *[EventData[Data[@Name='ObjectValueName']='Security']]</Select>
+        </Query>
+</QueryList>
