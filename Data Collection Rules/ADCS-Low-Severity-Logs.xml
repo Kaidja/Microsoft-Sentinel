@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-16"?>
+<QueryList>
+        <!--4871 - Certificate Services received a request to publish the certificate revocation list (CRL). Next Update: %1 Publish Base: %2 Publish Delta: %3 --> 
+        <!--4870 - Certificate Services revoked a certificate. Serial Number: %1 Reason: %2 --> 
+        <!--4869 - Certificate Services received a resubmitted certificate request. Request ID: %1 --> 
+        <!--4868 - The certificate manager denied a pending certificate request. Request ID: %1 --> 
+        <!--4895 - Certificate Services published the CA certificate to Active Directory® Domain Services. Certificate Hash: %1 Valid From: %2 Valid To: %3 --> 
+        <!--4894 - Certificate Services imported and archived a key. Request ID: %1 --> 
+        <!--4893 - Certificate Services archived a key. Request ID: %1 Requester: %2 KRA Hashes: %3 --> 
+        <!--4889 - Certificate Services set the status of a certificate request to pending. Request ID: %1 Requester: %2 Attributes: %3 Disposition: %4 SKI: %5 Subject: %6 --> 
+        <!--4886 - Certificate Services received a certificate request. Request ID: %1 Requester: %2 Attributes: %3 --> 
+        <!--4884 - Certificate Services imported a certificate into its database. Certificate: %1 Request ID: %2 --> 
+        <!--4881 - Certificate Services stopped. Certificate Database Hash: %1 Private Key Usage Count: %2 CA Certificate Hash: %3 CA Public Key Hash: %4 --> 
+        <!--4880 - Certificate Services started. Certificate Database Hash: %1 Private Key Usage Count: %2 CA Certificate Hash: %3 CA Public Key Hash: %4 --> 
+        <!--4879 - Certificate Services restore completed. --> 
+        <!--4878 - Certificate Services restore started. --> 
+        <!--4877 - Certificate Services backup completed. --> 
+        <!--4876 - Certificate Services backup started. Backup Type: %1 --> 
+        <!--4875 - Certificate Services received a request to shut down. --> 
+        <!--4872 - Certificate Services published the certificate revocation list (CRL). Base CRL: %1 CRL Number: %2 Key Container: %3 Next Publish: %4 Publish URLs: %5 --> 
+        <Query Id="0" Path="Security">
+                <Select Path="Security">*[System[(EventID=4871 or EventID=4870 or EventID=4869 or EventID=4868 or EventID=4895 or EventID=4894 or EventID=4893 or EventID=4889 or EventID=4886 or EventID=4884 or EventID=4881 or EventID=4880 or EventID=4879 or EventID=4878 or EventID=4877 or EventID=4876 or EventID=4875 or EventID=4872)]]</Select>
+        </Query>
+</QueryList>
