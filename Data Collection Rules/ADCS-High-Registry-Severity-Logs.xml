@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-16"?>
+<QueryList>
+        <!--4657 - A registry value was modified --> 
+        <Query Id="0" Path="Security">
+                <Select Path="Security">*[System[(EventID=4657)]]</Select>
+        </Query>
+</QueryList>
