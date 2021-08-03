@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-16"?>
+        <QueryList>
+        <!--4871 - Certificate Services received a request to publish the certificate revocation list (CRL). Next Update: %1 Publish Base: %2 Publish Delta: %3 --> 
+        <!--4870 - Certificate Services revoked a certificate. Serial Number: %1 Reason: %2 --> 
+        <!--4869 - Certificate Services received a resubmitted certificate request. Request ID: %1 --> 
+        <!--4868 - The certificate manager denied a pending certificate request. Request ID: %1 --> 
+        <!--4895 - Certificate Services published the CA certificate to Active Directory® Domain Services. Certificate Hash: %1 Valid From: %2 Valid To: %3 --> 
+        <!--4894 - Certificate Services imported and archived a key. Request ID: %1 --> 
+        <!--4893 - Certificate Services archived a key. Request ID: %1 Requester: %2 KRA Hashes: %3 --> 
+        <!--4889 - Certificate Services set the status of a certificate request to pending. Request ID: %1 Requester: %2 Attributes: %3 Disposition: %4 SKI: %5 Subject: %6 --> 
+        <!--4886 - Certificate Services received a certificate request. Request ID: %1 Requester: %2 Attributes: %3 --> 
+        <!--4884 - Certificate Services imported a certificate into its database. Certificate: %1 Request ID: %2 --> 
+        <!--4881 - Certificate Services stopped. Certificate Database Hash: %1 Private Key Usage Count: %2 CA Certificate Hash: %3 CA Public Key Hash: %4 --> 
+        <!--4880 - Certificate Services started. Certificate Database Hash: %1 Private Key Usage Count: %2 CA Certificate Hash: %3 CA Public Key Hash: %4 --> 
+        <!--4879 - Certificate Services restore completed. --> 
+        <!--4878 - Certificate Services restore started. --> 
+        <!--4877 - Certificate Services backup completed. --> 
+        <!--4876 - Certificate Services backup started. Backup Type: %1 --> 
+        <!--4875 - Certificate Services received a request to shut down. --> 
+        <!--4872 - Certificate Services published the certificate revocation list (CRL). Base CRL: %1 CRL Number: %2 Key Container: %3 Next Publish: %4 Publish URLs: %5 --> 
+        <Query Id="0" Path="Security">
+                <Select Path="Security">*[System[(EventID=4871)]]</Select>
+                <Select Path="Security">*[System[(EventID=4870)]]</Select>
+                <Select Path="Security">*[System[(EventID=4869)]]</Select>
+                <Select Path="Security">*[System[(EventID=4868)]]</Select>
+                <Select Path="Security">*[System[(EventID=4895)]]</Select>
+                <Select Path="Security">*[System[(EventID=4894)]]</Select>
+                <Select Path="Security">*[System[(EventID=4893)]]</Select>
+                <Select Path="Security">*[System[(EventID=4889)]]</Select>
+                <Select Path="Security">*[System[(EventID=4886)]]</Select>
+                <Select Path="Security">*[System[(EventID=4884)]]</Select>
+                <Select Path="Security">*[System[(EventID=4881)]]</Select>
+                <Select Path="Security">*[System[(EventID=4880)]]</Select>
+                <Select Path="Security">*[System[(EventID=4879)]]</Select>
+                <Select Path="Security">*[System[(EventID=4878)]]</Select>
+                <Select Path="Security">*[System[(EventID=4877)]]</Select>
+                <Select Path="Security">*[System[(EventID=4876)]]</Select>
+                <Select Path="Security">*[System[(EventID=4875)]]</Select>
+                <Select Path="Security">*[System[(EventID=4872)]]</Select>
+        </Query>
+        <!--4900 - Certificate Services template security was updated. %1 v%2 (Schema V%3) %4 %5 Template Change Information: Old Template Content: %9 New Template Content: %7 Old Security Descriptor: %10 New Security Descriptor: %8 Additional Information: Domain Controller: %6 --> 
+        <!--4892 - A property of Certificate Services changed. Property: %1 Index: %2 Type: %3 Value: %4 --> 
+        <!--4874 - One or more certificate request attributes changed. Request ID: %1 Attributes: %2 --> 
+        <!--4873 - A certificate request extension changed. Request ID: %1 Name: %2 Type: %3 Flags: %4 Data: %5 --> 
+        <!--4888 - Certificate Services denied a certificate request. Request ID: %1 Requester: %2 Attributes: %3 Disposition: %4 SKI: %5 Subject: %6 --> 
+        <!--4887 - Certificate Services approved a certificate request and issued a certificate. Request ID: %1 Requester: %2 Attributes: %3 Disposition: %4 SKI: %5 Subject: %6 --> 
+        <!--4883 - Certificate Services retrieved an archived key. Request ID: %1 --> 
+        <!--4891 - A configuration entry changed in Certificate Services. Node: %1 Entry: %2 Value: %3 --> 
+        <!--4898 - Certificate Services loaded a template. %1 v%2 (Schema V%3) %4 %5 Template Information: Template Content: %7 Security Descriptor: %8 Additional Information: Domain Controller: %6 --> 
+        <!--4897 - Role separation enabled: %1 --> 
+        <!--4899 - A Certificate Services template was updated. %1 v%2 (Schema V%3) %4 %5 Template Change Information: Old Template Content: %8 New Template Content: %7 Additional Information: Domain Controller: %6 --> 
+        <Query Id="1" Path="Security">
+                <Select Path="Security">*[System[(EventID=4900)]]</Select>
+                <Select Path="Security">*[System[(EventID=4892)]]</Select>
+                <Select Path="Security">*[System[(EventID=4874)]]</Select>
+                <Select Path="Security">*[System[(EventID=4873)]]</Select>
+                <Select Path="Security">*[System[(EventID=4888)]]</Select>
+                <Select Path="Security">*[System[(EventID=4887)]]</Select>
+                <Select Path="Security">*[System[(EventID=4883)]]</Select>
+                <Select Path="Security">*[System[(EventID=4891)]]</Select>
+                <Select Path="Security">*[System[(EventID=4898)]]</Select>
+                <Select Path="Security">*[System[(EventID=4897)]]</Select>
+                <Select Path="Security">*[System[(EventID=4899)]]</Select>
+        </Query>
+        <!--4885 - The audit filter for Certificate Services changed. Filter: %1 --> 
+ 	<!--4896 - One or more rows have been deleted from the certificate database. Table ID: %1 Filter: %2 Rows Deleted: %3 --> 
+ 	<!--4890 - The certificate manager settings for Certificate Services changed. Enable: %1 %2 --> 
+ 	<!--4882 - The security permissions for Certificate Services changed. %1 --> 
+        <Query Id="2" Path="Security">
+                <Select Path="Security">*[System[(EventID=4885)]]</Select>
+                <Select Path="Security">*[System[(EventID=4896)]]</Select>
+                <Select Path="Security">*[System[(EventID=4890)]]</Select>
+                <Select Path="Security">*[System[(EventID=4882)]]</Select>
+        </Query>
+        <Query Id="3" Path="Security">
+        <!--4657 - A registry value was modified --> 
+                <Select Path="Security">*[System[(EventID=4657)]]</Select>
+        </Query>
+</QueryList>
