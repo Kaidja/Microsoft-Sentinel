@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-16"?>
+<QueryList>
+ 	<!--4885 - The audit filter for Certificate Services changed. Filter: %1 --> 
+ 	<!--4896 - One or more rows have been deleted from the certificate database. Table ID: %1 Filter: %2 Rows Deleted: %3 --> 
+ 	<!--4890 - The certificate manager settings for Certificate Services changed. Enable: %1 %2 --> 
+ 	<!--4882 - The security permissions for Certificate Services changed. %1 --> 
+	<Query Id="0" Path="Security">
+    		<Select Path="Security">*[System[(EventID=4885 or EventID=4896 or EventID=4890 or EventID=4882)]]</Select>
+  	</Query>
+</QueryList>
