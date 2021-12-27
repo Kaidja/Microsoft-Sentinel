@@ -1,0 +1,32 @@
+id: 39a2d6ed-98d2-460f-a769-f7bb787079a5
+name: Active Directory permissions have been changed
+description: |
+  'This detection uses SecurityEvent logs to identify the permission changes in Active Directory. There are four different object classes: container, user, group, domainDNS, groupPolicyContainer.'
+severity: Medium
+requiredDataConnectors:
+  - connectorId: AzureActivity
+    dataTypes:
+      - AzureActivity
+queryFrequency: 1d
+queryPeriod: 1d
+triggerOperator: gt
+triggerThreshold: 0
+tactics:
+
+relevantTechniques:
+
+tags:
+
+query: |
+
+entityMappings:
+  - entityType: Account
+    fieldMappings:
+      - identifier: FullName
+        columnName: AccountCustomEntity
+  - entityType: IP
+    fieldMappings:
+      - identifier: Address
+        columnName: IPCustomEntity
+version: 1.0.0
+kind: Scheduled
