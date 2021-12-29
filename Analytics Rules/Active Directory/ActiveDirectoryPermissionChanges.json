@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/39a2d6ed-98d2-460f-a769-f7bb787079a5')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/39a2d6ed-98d2-460f-a769-f7bb787079a5')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2021-09-01-preview",
+            "properties": {
+                "displayName": "Active Directory permission changes",
+                "description": "This rule monitors Active Directory permissions changes on different object levels. Based on the object and classifications, it sets different alert severity levels and descriptions.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "let ADObjectTypes = datatable (ObjectClass:string, Severity:string, UIText:string)\r\n    [\"domainDNS\", \"High\",\"root domain\",\r\n     \"user\",  \"Low\",\"User\",\r\n     \"group\", \"Low\",\"Group\",\r\n     \"groupPolicyContainer\", \"Medium\",\" Group Policy Object\",\r\n     \"organizationalUnit\", \"Medium\",\"Organizational Unit\",\r\n     \"container\", \"Medium\",\"Built-in Container\",\r\n     ];\r\nlet CriticalADGroups = dynamic ([\"Enterprise Admins\",\"Domain Admins\",\"Schema Admins\",\"Protected Users\",\"DnsAdmins\"]);\r\nlet CriticalContainers = dynamic ([\"AdminSDHolder\"]);\r\nSecurityEvent\r\n| where EventID == 5136\r\n| extend MyData = tostring(parse_xml(EventData))\r\n| extend Object = extractjson(\"$['EventData']['Data'][8]#text\", MyData)\r\n| extend ObjectClass = extractjson(\"$['EventData']['Data'][10]#text\", MyData)\r\n| extend OperationType = iif(extractjson(\"$['EventData']['Data'][14]#text\", MyData) == \"%%14674\",\"Value Added\",\"Value Deleted\")\r\n| parse Object with * \"CN=\" GroupName \",\" *\r\n| parse Object with * \"OU=\" OUName \",\" *\r\n| where OperationType == \"Value Added\"\r\n| join kind = inner ADObjectTypes on ObjectClass\r\n| extend CriticalGroupChange = (GroupName has_any (CriticalADGroups))\r\n| extend CriticalContainerChange = (GroupName has_any (CriticalContainers))\r\n| extend Severity = iif(CriticalGroupChange == \"true\",\"High\",Severity)\r\n| extend Severity = iif(CriticalContainerChange == \"true\",\"High\",Severity)\r\n| project TimeGenerated,ObjectClass,Severity,Account,Object,OperationType,GroupName,CriticalGroupChange,CriticalContainerChange,UIText,OUName",
+                "queryFrequency": "PT5M",
+                "queryPeriod": "PT5M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "tactics": [
+                    "LateralMovement",
+                    "Discovery"
+                ],
+                "techniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": {
+                    "alertDisplayNameFormat": "User {{Account}} changed permissions on {{UIText}} level",
+                    "alertDescriptionFormat": "{{Account}} modified {{Object}}. This object is marked as {{Severity}}.",
+                    "alertTacticsColumnName": null,
+                    "alertSeverityColumnName": "Severity"
+                },
+                "customDetails": {
+                    "OperationType": "OperationType",
+                    "ObjectClass": "ObjectClass",
+                    "Object": "Object"
+                },
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Name",
+                                "columnName": "Account"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
