@@ -1,0 +1,100 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/b2df26fd-1d03-4b24-a1c1-bc1d82dc713d')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/b2df26fd-1d03-4b24-a1c1-bc1d82dc713d')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2021-09-01-preview",
+            "properties": {
+                "displayName": "Machine Account manipulation",
+                "description": "This query looks for the following registry key changes HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Services\\Netlogon\\Parameters. Bad actors may change the machine account password settings for persistency. Query depends on Defender for Endpoint DeviceRegistryEvents table.",
+                "severity": "Medium",
+                "enabled": true,
+                "query": "DeviceRegistryEvents\r\n| where ActionType == \"RegistryValueSet\"\r\n| where RegistryKey == \"HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\ControlSet001\\\\Services\\\\Netlogon\\\\Parameters\"\r\n| where RegistryValueName == \"DisablePasswordChange\" or RegistryValueName == \"MaximumPasswordAge\"",
+                "queryFrequency": "PT5M",
+                "queryPeriod": "PT5M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "tactics": [
+                    "Persistence"
+                ],
+                "techniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": {
+                    "alertDisplayNameFormat": "Machine Account manipulation on {{DeviceName}} by {{InitiatingProcessAccountName}}",
+                    "alertDescriptionFormat": "Registry changed by {{InitiatingProcessFileName}}",
+                    "alertTacticsColumnName": null,
+                    "alertSeverityColumnName": null
+                },
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Name",
+                                "columnName": "InitiatingProcessAccountName"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "Host",
+                        "fieldMappings": [
+                            {
+                                "identifier": "FullName",
+                                "columnName": "DeviceName"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "RegistryKey",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Key",
+                                "columnName": "RegistryKey"
+                            }
+                        ]
+                    },
+                    {
+                        "entityType": "RegistryValue",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Name",
+                                "columnName": "RegistryValueName"
+                            },
+                            {
+                                "identifier": "Value",
+                                "columnName": "RegistryValueData"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
