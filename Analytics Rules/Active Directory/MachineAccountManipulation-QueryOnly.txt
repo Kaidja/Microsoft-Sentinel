@@ -1,0 +1,4 @@
+DeviceRegistryEvents
+| where ActionType == "RegistryValueSet"
+| where RegistryKey == "HKEY_LOCAL_MACHINE\\SYSTEM\\ControlSet001\\Services\\Netlogon\\Parameters"
+| where RegistryValueName == "DisablePasswordChange" or RegistryValueName == "MaximumPasswordAge"
