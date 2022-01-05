@@ -1,0 +1,6 @@
+//This query uses FunctionGetADFailedLogonStatus Log Analytics function. You have to create the function first manually or through PowerShell, API, etc
+SecurityEvent
+| where EventID == 4625
+| project TimeGenerated,Account,SubStatus
+| extend Reason = FunctionGetADFailedLogonStatus(toupper(SubStatus))
+| project-away SubStatus
