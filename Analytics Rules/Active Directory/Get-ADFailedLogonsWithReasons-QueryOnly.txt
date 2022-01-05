@@ -1,0 +1,26 @@
+SecurityEvent
+| where EventID == 4625
+| project TimeGenerated,Account,SubStatus
+| extend Reason = case(
+        SubStatus == '0xc000005e', 'There are currently no logon servers available to service the logon request',
+        SubStatus == '0xc0000064', 'User logon with misspelled or bad user account',
+        SubStatus == '0xc000006a', 'User logon with misspelled or bad password',
+        SubStatus == '0xc000006d', 'The cause is either a bad username or authentication information',
+        SubStatus == '0xc000006e', 'Indicates a referenced user name and authentication information are valid, but some user account restriction has prevented successful authentication (such as time-of-day restrictions).',
+        SubStatus == '0xc000006f', 'User logon outside authorized hours',
+        SubStatus == '0xc0000070', 'User logon from unauthorized workstation',
+        SubStatus == '0xc0000071', 'User logon with expired password',
+        SubStatus == '0xc0000072', 'User logon to account disabled by administrator',
+        SubStatus == '0xc00000dc', 'Indicates the Sam Server was in the wrong state to perform the desired operation.',
+        SubStatus == '0xc0000133', 'Clocks between DC and other computer too far out of sync',
+        SubStatus == '0xc000015b', 'The user has not been granted the requested logon type (also called the logon right) at this machine',
+        SubStatus == '0xc000018c', 'The logon request failed because the trust relationship between the primary domain and the trusted domain failed.',
+        SubStatus == '0xc0000192', 'An attempt was made to logon, but the Netlogon service was not started.',
+        SubStatus == '0xc0000193', 'User logon with expired account',
+        SubStatus == '0xc0000224', 'User is required to change password at next logon',
+        SubStatus == '0xc0000225', 'Evidently a bug in Windows and not a risk',
+        SubStatus == '0xc0000234', 'User logon with account locked',
+        SubStatus == '0xc00002ee', 'Failure Reason: An Error occurred during Logon',
+        SubStatus == '0xc0000413', 'Logon Failure: The machine you are logging on to is protected by an authentication firewall. The specified account is not allowed to authenticate to the machine.',
+        SubStatus == '0x0','OK', "Unknown reason"
+)
