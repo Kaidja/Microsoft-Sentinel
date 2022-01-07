@@ -1,4 +1,5 @@
 //This query depends on FunctionConvertNewADAccountUserAccountControlValue KQL parameterized function. This function needs to be created before.
+//Option 1
 SecurityEvent
 | where EventID == 4720
 | extend UserAccountControlFlags = split(UserAccountControl,"%%")
@@ -6,3 +7,12 @@ SecurityEvent
 | extend UserAccountControlFlags = replace_string(UserAccountControlFlags," 		","")
 | extend Flag = FunctionConvertNewADAccountUserAccountControlValue(UserAccountControlFlags)
 | summarize AccountChanges=make_list(Flag) by TargetAccount
+
+
+//Option 2
+SecurityEvent
+| where EventID == 4720
+| extend UserAccountControlFlags = split(UserAccountControl,"%%")
+| mv-expand UACFlag1 = FunctionConvertNewADAccountUserAccountControlValue(trim_end(" 		",tostring(UserAccountControlFlags[1]))), UACFlag2 = FunctionConvertNewADAccountUserAccountControlValue(trim_end(" 		",tostring(UserAccountControlFlags[2]))), UACFlag3 = FunctionConvertNewADAccountUserAccountControlValue(trim_end(" 		",tostring(UserAccountControlFlags[3]))), UACFlag4 = FunctionConvertNewADAccountUserAccountControlValue(trim_end(" 		",tostring(UserAccountControlFlags[4])))
+| project-away UserAccountControlFlags
+| project TargetAccount,UserAccountControl,UACFlag1,UACFlag2,UACFlag3,UACFlag4
