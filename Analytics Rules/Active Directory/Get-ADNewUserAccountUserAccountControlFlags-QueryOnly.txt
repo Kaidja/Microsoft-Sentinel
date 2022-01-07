@@ -1,0 +1,8 @@
+//This query depends on FunctionConvertNewADAccountUserAccountControlValue KQL parameterized function. This function needs to be created before.
+SecurityEvent
+| where EventID == 4720
+| extend UserAccountControlFlags = split(UserAccountControl,"%%")
+| mv-expand UserAccountControlFlags to typeof(string)
+| extend UserAccountControlFlags = replace_string(UserAccountControlFlags," 		","")
+| extend Flag = FunctionConvertNewADAccountUserAccountControlValue(UserAccountControlFlags)
+| summarize AccountChanges=make_list(Flag) by TargetAccount
