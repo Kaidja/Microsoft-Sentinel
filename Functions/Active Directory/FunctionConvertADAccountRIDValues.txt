@@ -1,0 +1,14 @@
+//Source https://docs.microsoft.com/en-US/windows/security/identity-protection/access-control/security-identifiers
+dynamic(
+        {
+        "500":"DOMAIN_USER_RID_ADMIN",
+        "501":"DOMAIN_USER_RID_GUEST",
+        "513":"DOMAIN_GROUP_RID_USERS",
+        "514":"DOMAIN_GROUP_RID_GUESTS",
+        "515":"DOMAIN_GROUP_RID_COMPUTERS",
+        "516":"DOMAIN_GROUP_RID_CONTROLLERS",
+        "517":"DOMAIN_GROUP_RID_CERT_ADMINS",
+        "518":"DOMAIN_GROUP_RID_SCHEMA_ADMINS",
+        "519":"DOMAIN_GROUP_RID_ENTERPRISE_ADMINS",
+        "520":"DOMAIN_GROUP_RID_POLICY_ADMINS"
+})[ID]        
