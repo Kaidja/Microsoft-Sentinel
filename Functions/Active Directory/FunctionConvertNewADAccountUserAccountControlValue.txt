@@ -1,0 +1,32 @@
+//Source Windows Security Monitoring: Scenarios and Patterns By Andrei Miroshnikov
+// https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4720
+dynamic(
+        {
+        "2065":"Password Expired - Disabled",
+        "2066":"Trusted To Authenticate For Delegation - Disabled",
+        "2067":"Exclude Authorization Information - Disabled",
+        "2068":"Undefined UserAccountControl Bit 20 - Disabled",
+        "2069":"Protect Kerberos Service Tickets with AES Keys - Disabled",
+        "2080":"Account Disabled",
+        "2081":"Home Directory Required - Enabled",
+        "2082":"Password not required - Enabled",
+        "2083":"Temp Duplicate Account - Enabled",
+        "2084":"Normal Account - Enabled",
+        "2085":"MNS Logon Account - Enabled",
+        "2086":"Interdomain Trust Account - Enabled",
+        "2087":"Workstation Trust Account - Enabled",
+        "2088":"Serer Trust Account - Enabled",
+        "2089":"Dont Expire Password - Enabled",
+        "2090":"Account Locked",
+        "2091":"Encrypted Text Password Allowed - Enabled",
+        "2092":"Smartcard Required - Enabled",
+        "2093":"Trusted for Delegation - Enabled",
+        "2094":"Not Delegated - Enabled",
+        "2095":"Use DES Key Only - Enabled",
+        "2096":"Dont Require Pre-Auth - Enabled",
+        "2097":"Password Expired - Enabled",
+        "2098":"Trusted To Authenicate For Delegation - Enabled",
+        "2099":"Exclude Authorization Information - Enabled",
+        "2100":"Undefined UseAccountControl Bit 20 - Enabled",
+        "2101":"Protected Kerberos Service Tickets with AES Keys - Enabled"
+})[ID]        
