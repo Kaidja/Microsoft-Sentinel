@@ -1,0 +1,11 @@
+//https://docs.microsoft.com/en-us/windows/win32/adschema/a-msds-allowedtoactonbehalfofotheridentity
+//msDS-AllowedToActOnBehalfOfOtherIdentity and msDS-AllowedToDelegateTo
+SecurityEvent
+| where EventID == 5136
+| extend MyData = tostring(parse_xml(EventData))
+| extend ObjectDN = tostring(extractjson("$['EventData']['Data'][8]#text", MyData))
+| extend ObjectClass = tostring(extractjson("$['EventData']['Data'][10]#text", MyData))
+| extend AttributeLDAPDisplayName = tostring(extractjson("$['EventData']['Data'][11]#text", MyData))
+| extend AttributeValue = tostring(extractjson("$['EventData']['Data'][13]#text", MyData))
+| where AttributeLDAPDisplayName == "msDS-AllowedToActOnBehalfOfOtherIdentity" or AttributeLDAPDisplayName == "msDS-AllowedToDelegateTo"
+| project TimeGenerated,ObjectDN,ObjectClass,AttributeLDAPDisplayName,AttributeValue 
