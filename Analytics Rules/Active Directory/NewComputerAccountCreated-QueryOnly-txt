@@ -1,0 +1,7 @@
+SecurityEvent
+| where EventID == 4741
+| extend MyData = tostring(parse_xml(EventData))
+| extend SubjectUserName = tostring(extractjson("$['EventData']['Data'][4]#text", MyData))
+| extend ComputerName = tostring(extractjson("$['EventData']['Data'][8]#text", MyData))
+| extend PrimaryGroupId = FunctionConvertADAccountRIDValues(tostring(extractjson("$['EventData']['Data'][18]#text", MyData)))
+| project TimeGenerated,SubjectUserName,ComputerName,PrimaryGroupId
