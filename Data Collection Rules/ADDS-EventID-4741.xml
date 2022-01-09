@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-16"?>
+<QueryList>
+  <Query Id="0" Path="Security">
+    <Select Path="Security">*[System[(EventID=4741)]]</Select>
+  </Query>
+</QueryList>
