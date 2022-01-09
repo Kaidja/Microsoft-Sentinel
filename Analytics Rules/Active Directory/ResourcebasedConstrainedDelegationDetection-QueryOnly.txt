@@ -1,0 +1,7 @@
+//https://docs.microsoft.com/en-us/windows/win32/adschema/a-msds-allowedtoactonbehalfofotheridentity
+//msDS-AllowedToActOnBehalfOfOtherIdentity
+//Resource-based Constrained Delegation
+SecurityEvent
+| where EventID == 4662
+| where ObjectType == "%{bf967a86-0de6-11d0-a285-00aa003049e2}" //Object Type: Computer
+| where Properties contains "3f78c3e5-f79a-46bd-a0b8-9d18116ddc79" //ms-DS-Allowed-To-Act-On-Behalf-Of-Other-Identity attribute
