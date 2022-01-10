@@ -1,0 +1,13 @@
+//This query depends on FunctionConvertNewADAccountUserAccountControlValue function.
+//https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4742
+SecurityEvent
+| where EventID == 4742
+| extend MyData = tostring(parse_xml(EventData))
+| extend User = tostring(extractjson("$['EventData']['Data'][5]#text", MyData))
+| extend Server = tostring(extractjson("$['EventData']['Data'][1]#text", MyData))
+| extend AllowedToDelegateTo = tostring(extractjson("$['EventData']['Data'][20]#text", MyData))
+| extend UserAccountControl = tostring(extractjson("$['EventData']['Data'][23]#text", MyData))
+| extend UserAccountControl = trim_start(" 		",replace_string(UserAccountControl,"%%","")) 
+| extend UserAccountControl = FunctionConvertNewADAccountUserAccountControlValue(UserAccountControl)
+| where UserAccountControl == "Trusted for Delegation - Enabled"
+| project TimeGenerated,User,Server,UserAccountControl,AllowedToDelegateTo
