@@ -1,0 +1,12 @@
+SecurityEvent
+| where EventID == 5136
+| extend MyData = tostring(parse_xml(EventData))
+| extend SubjectUserName = tostring(extractjson("$['EventData']['Data'][4]#text", MyData))
+| extend CN = tostring(extractjson("$['EventData']['Data'][8]#text", MyData))
+| extend ObjectClass = tostring(extractjson("$['EventData']['Data'][10]#text", MyData))
+| extend AttributeLDAPDisplayName = tostring(extractjson("$['EventData']['Data'][11]#text", MyData))
+| extend AttributeValue = tostring(extractjson("$['EventData']['Data'][13]#text", MyData))
+| extend OperationType = tostring(extractjson("$['EventData']['Data'][14]#text", MyData))
+| where CN == "CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,DC=LakeForestConsulting,DC=com"
+| where AttributeLDAPDisplayName == "dSHeuristics" and AttributeValue == 1
+| project TimeGenerated,SubjectUserName,CN,ObjectClass,AttributeLDAPDisplayName,AttributeValue
