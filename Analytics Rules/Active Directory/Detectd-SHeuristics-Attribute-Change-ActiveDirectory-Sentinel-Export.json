@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspace": {
+            "type": "String"
+        }
+    },
+    "resources": [
+        {
+            "id": "[concat(resourceId('Microsoft.OperationalInsights/workspaces/providers', parameters('workspace'), 'Microsoft.SecurityInsights'),'/alertRules/ffbf1a4b-2796-4514-8682-84d87d8ec6f0')]",
+            "name": "[concat(parameters('workspace'),'/Microsoft.SecurityInsights/ffbf1a4b-2796-4514-8682-84d87d8ec6f0')]",
+            "type": "Microsoft.OperationalInsights/workspaces/providers/alertRules",
+            "kind": "Scheduled",
+            "apiVersion": "2021-09-01-preview",
+            "properties": {
+                "displayName": "Detect dSHeuristics attribute change in Active Directory",
+                "description": "",
+                "severity": "High",
+                "enabled": true,
+                "query": "SecurityEvent\r\n| where EventID == 5136\r\n| extend MyData = tostring(parse_xml(EventData))\r\n| extend SubjectUserName = tostring(extractjson(\"$['EventData']['Data'][3]#text\", MyData))\r\n| extend CN = tostring(extractjson(\"$['EventData']['Data'][8]#text\", MyData))\r\n| extend ObjectClass = tostring(extractjson(\"$['EventData']['Data'][10]#text\", MyData))\r\n| extend AttributeLDAPDisplayName = tostring(extractjson(\"$['EventData']['Data'][11]#text\", MyData))\r\n| extend AttributeValue = tostring(extractjson(\"$['EventData']['Data'][13]#text\", MyData))\r\n| extend OperationType = tostring(extractjson(\"$['EventData']['Data'][14]#text\", MyData))\r\n| where CN == \"CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,DC=LakeForestConsulting,DC=com\"\r\n| where AttributeLDAPDisplayName == \"dSHeuristics\" and AttributeValue == 1 and OperationType == \"%%14674\"\r\n| project TimeGenerated,SubjectUserName,CN,ObjectClass,AttributeLDAPDisplayName,AttributeValue",
+                "queryFrequency": "PT5M",
+                "queryPeriod": "PT5M",
+                "triggerOperator": "GreaterThan",
+                "triggerThreshold": 0,
+                "suppressionDuration": "PT5H",
+                "suppressionEnabled": false,
+                "tactics": [
+                    "Persistence"
+                ],
+                "techniques": [],
+                "alertRuleTemplateName": null,
+                "incidentConfiguration": {
+                    "createIncident": true,
+                    "groupingConfiguration": {
+                        "enabled": false,
+                        "reopenClosedIncident": false,
+                        "lookbackDuration": "PT5H",
+                        "matchingMethod": "AllEntities",
+                        "groupByEntities": [],
+                        "groupByAlertDetails": [],
+                        "groupByCustomDetails": []
+                    }
+                },
+                "eventGroupingSettings": {
+                    "aggregationKind": "SingleAlert"
+                },
+                "alertDetailsOverride": {
+                    "alertDisplayNameFormat": "{{SubjectUserName}} changed the dSHeuristics attribute",
+                    "alertDescriptionFormat": null,
+                    "alertTacticsColumnName": null,
+                    "alertSeverityColumnName": null
+                },
+                "customDetails": null,
+                "entityMappings": [
+                    {
+                        "entityType": "Account",
+                        "fieldMappings": [
+                            {
+                                "identifier": "Name",
+                                "columnName": "SubjectUserName"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
