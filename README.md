@@ -1,2 +1,2 @@
-# Azure-Sentinel
-Azure Sentinel related content
+# Microsoft-Sentinel
+Microsoft Sentinel related content
