@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-16"?>
+        <QueryList>
+        <!-- Policy processing cycle start and end -->
+        <!-- 10003 LAPS policy processing is now starting. --> 
+        <!-- 10004 LAPS policy processing succeeded. --> 
+        <!-- 10005 LAPS policy processing failed with the error code below. Error code: 80070032 --> 
+        <Query Id="0" Path="Microsoft-Windows-LAPS/Operational">
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10003)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10004)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10005)]]</Select>                                
+        </Query>
+         <!-- Policy configuration details -->
+         <!-- 10021 When the policy is configured to back up the password to Windows Server Active Directory, a 10021 event is logged -->
+         <!-- 10022 When the policy is configured to back up the password to Azure Active Directory, a 10022 event is logged -->
+         <!-- 10023 When Windows LAPS is configured to use a legacy Microsoft LAPS policy, a 10023 event is logged -->
+        <Query Id="1" Path="Microsoft-Windows-LAPS/Operational">
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10021)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10022)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10023)]]</Select>
+        </Query>
+        <!-- Password update confirmation events -->
+        <!-- 10018 LAPS successfully updated Active Directory with the new password.-->
+        <!-- 10029 LAPS successfully updated Azure Active Directory with the new password.-->
+        <!-- 10020 LAPS successfully updated the local admin account with the new password.-->
+        <Query Id="2" Path="Microsoft-Windows-LAPS/Operational">
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10018)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10029)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10020)]]</Select>                                
+        </Query>
+        <!-- Blocked external password modification request	-->
+        <!-- 10031 LAPS blocked an external request that tried to modify the password of the current managed account. -->
+        <Query Id="3" Path="Microsoft-Windows-LAPS/Operational">
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10031)]]</Select>
+        </Query>
+        <!-- Post-authentication action events -->
+        <!-- 10041 LAPS detected a successful authentication for the currently managed account. A background task has been scheduled to execute the configured post-authentication actions after the configured grace period has expired.%n-->
+        <!-- 10042 The post-authentication grace period has expired per policy. The configured post-authentication actions will now be executed. -->
+        <!-- 10043 LAPS failed to reset the password for the currently managed account. The password is considered expired due to an authentication event. LAPS will continue retrying the password reset operation until it succeeds.-->
+        <!-- 10044 LAPS successfully reset the password for the currently managed account and completed all configured post-authentication actions -->
+        <Query Id="4" Path="Microsoft-Windows-LAPS/Operational">
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10041)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10042)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10043)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10044)]]</Select>                                                
+        </Query>
+        <!-- No Category -->
+        <!-- 10033 The machine is configured with legacy LAPS policy settings but a legacy LAPS product appears to be installed. The configured account's password will not be managed by Windows until the legacy product is uninstalled. Alternatively you may consider configuring the newer LAPS policy settings.-->
+        <Query Id="5" Path="Microsoft-Windows-LAPS/Operational">                
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10033)]]</Select>                                               
+        </Query>        
+</QueryList>
