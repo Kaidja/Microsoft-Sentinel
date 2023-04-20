@@ -45,7 +45,25 @@
         </Query>
         <!-- No Category -->
         <!-- 10033 The machine is configured with legacy LAPS policy settings but a legacy LAPS product appears to be installed. The configured account's password will not be managed by Windows until the legacy product is uninstalled. Alternatively you may consider configuring the newer LAPS policy settings.-->
+        <!-- 10066 LAPS received an LDAP_INSUFFICIENT_RIGHTS error trying to update the password using the LAPS password attribute. You should update the permissions on this computer's container using the Set-LapsADComputerSelfPermission cmdlet. -->
+        <!-- 10017 LAPS failed to update Active Directory with the new password. The current password has not been modified.-->
+        <!-- 10015 The managed account password needs to be updated due to one or more reasons-->
+        <!-- 10009 LAPS is configured to backup passwords to Active Directory. -->
+        <!-- 10055 LAPS is using the following domain controller DCName: DC01.XXXX.XXXX -->
+        <!-- 10052 LAPS is processing the current policy per normal background scheduling. -->
+        <!-- 10011 LAPS failed when querying Active Directory for the current computer state. -->                
+        <!-- 10054 LAPS is processing the current policy in response to a Group Policy change notification. -->
+        <!-- 10057 LAPS was unable to bind over LDAP to the domain controller -->                
         <Query Id="5" Path="Microsoft-Windows-LAPS/Operational">                
-                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10033)]]</Select>                                               
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10033)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10066)]]</Select> 
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10017)]]</Select> 
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10015)]]</Select> 
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10009)]]</Select> 
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10055)]]</Select> 
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10052)]]</Select> 
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10011)]]</Select> 
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10054)]]</Select>
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10057)]]</Select>                   
         </Query>        
 </QueryList>
