@@ -53,7 +53,8 @@
         <!-- 10052 LAPS is processing the current policy per normal background scheduling. -->
         <!-- 10011 LAPS failed when querying Active Directory for the current computer state. -->                
         <!-- 10054 LAPS is processing the current policy in response to a Group Policy change notification. -->
-        <!-- 10057 LAPS was unable to bind over LDAP to the domain controller -->                
+        <!-- 10057 LAPS was unable to bind over LDAP to the domain controller -->        
+        <!-- 10016 The managed account password does not need to be updated at this time. -->                 
         <Query Id="5" Path="Microsoft-Windows-LAPS/Operational">                
                 <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10033)]]</Select>
                 <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10066)]]</Select> 
@@ -64,6 +65,7 @@
                 <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10052)]]</Select> 
                 <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10011)]]</Select> 
                 <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10054)]]</Select>
-                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10057)]]</Select>                   
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10057)]]</Select>            
+                <Select Path="Microsoft-Windows-LAPS/Operational">*[System[(EventID=10016)]]</Select>                  
         </Query>        
 </QueryList>
