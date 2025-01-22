@@ -1,0 +1,165 @@
+{
+  "MailboxActions": [
+    {
+      "Action": "AddFolderPermissions",
+      "Description": "Although this value is accepted as a mailbox action, it's already included in the UpdateFolderPermissions action and isn't audited separately. In other words, don't use this value.",
+      "Admin": { "canBeLogged": false, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "ApplyRecord",
+      "Description": "An item is labeled as a record.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "Copy",
+      "Description": "A message was copied to another folder.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "Create",
+      "Description": "An item was created in the Calendar, Contacts, Draft, Notes, or Tasks folder in the mailbox (for example, a new meeting request is created). Creating, sending, or receiving a message isn't audited. Also, creating a mailbox folder isn't audited.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": false }
+    },
+    {
+      "Action": "FolderBind",
+      "Description": "A mailbox folder was accessed. This action is also logged when the admin or delegate opens the mailbox. Note: Audit records for folder bind actions performed by delegates are consolidated. One audit record is generated for individual folder access within a 24-hour period.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": false },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "HardDelete",
+      "Description": "A message was purged from the Recoverable Items folder.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "MailboxLogin",
+      "Description": "The user signed into their mailbox.",
+      "Admin": { "canBeLogged": false, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": true, "loggedByDefault": false }
+    },
+    {
+      "Action": "MailItemsAccessed",
+      "Description": "Occurs when mail data is accessed by mail protocols and clients.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "MessageBind",
+      "Description": "Note: This value is available only for users without E5/A5/G5 licenses. A message was viewed in the preview pane or opened by an admin.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "ModifyFolderPermissions",
+      "Description": "Although this value is accepted as a mailbox action, it's already included in the UpdateFolderPermissions action and isn't audited separately. In other words, don't use this value.",
+      "Admin": { "canBeLogged": false, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "Move",
+      "Description": "A message was moved to another folder.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": false },
+      "Owner": { "canBeLogged": true, "loggedByDefault": false }
+    },
+    {
+      "Action": "MoveToDeletedItems",
+      "Description": "A message was deleted and moved to the Deleted Items folder.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "RecordDelete",
+      "Description": "An item that's labeled as a record was soft-deleted (moved to the Recoverable Items folder). Items labeled as records can't be permanently deleted (purged from the Recoverable Items folder).",
+      "Admin": { "canBeLogged": true, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": false },
+      "Owner": { "canBeLogged": true, "loggedByDefault": false }
+    },
+    {
+      "Action": "RemoveFolderPermissions",
+      "Description": "Although this value is accepted as a mailbox action, it's already included in the UpdateFolderPermissions action and isn't audited separately. In other words, don't use this value.",
+      "Admin": { "canBeLogged": false, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "SearchQueryInitiated",
+      "Description": "A person uses Outlook (Windows, Mac, iOS, Android, or Outlook on the web) or the Mail app for Windows 10 to search for items in a mailbox.",
+      "Admin": { "canBeLogged": false, "loggedByDefault": false },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": true, "loggedByDefault": false }
+    },
+    {
+      "Action": "Send",
+      "Description": "The user sends an email message, replies to an email message, or forwards an email message.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "SendAs",
+      "Description": "A message was sent using the SendAs permission. This permission allows another user to send the message as though it came from the mailbox owner.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "SendOnBehalf",
+      "Description": "A message was sent using the SendOnBehalf permission. This permission allows another user to send the message on behalf of the mailbox owner. The message indicates to the recipient who the message was sent on behalf of and who actually sent the message.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": false, "loggedByDefault": false }
+    },
+    {
+      "Action": "SoftDelete",
+      "Description": "A message was permanently deleted or deleted from the Deleted Items folder. Soft-deleted items are moved to the Recoverable Items folder.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "Update",
+      "Description": "A message or any of its properties was changed.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "UpdateCalendarDelegation",
+      "Description": "A calendar delegation was assigned to a mailbox. Calendar delegation gives someone else in the same organization permissions to manage the mailbox owner's calendar.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": false, "loggedByDefault": false },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "UpdateFolderPermissions",
+      "Description": "A folder permission was changed. Folder permissions control which users in your organization can access folders in a mailbox and the messages located in those folders.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    },
+    {
+      "Action": "UpdateInboxRules",
+      "Description": "An inbox rule was added, removed, or changed. Inbox rules process messages in the user's Inbox based on conditions. Actions specify what to do to messages that match the conditions of the rule. For example, move the message to a specified folder or delete the message.",
+      "Admin": { "canBeLogged": true, "loggedByDefault": true },
+      "Delegate": { "canBeLogged": true, "loggedByDefault": true },
+      "Owner": { "canBeLogged": true, "loggedByDefault": true }
+    }
+  ]
+}
